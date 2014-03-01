@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>รหัสประชาชน</title>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+  <script language="javascript">
+    function predict(id) {
+        if(id.length == 12) {
+            for(i=0, sum=0; i < 12; i++)
+                sum += parseFloat(id.charAt(i))*(13-i);
+            var inum = (11-sum%11)%10;
+            document.getElementById( 'lnum' ).innerHTML = '<span style="color: blue;"><strong>หลักที่ 13 คือ '+inum.toString()+'</strong></span>';
+        } else document.getElementById( 'lnum' ).innerHTML = '<span style="color: red;"><strong>กรอกให้ครบ 13 หลักสิครับ</strong></span>';
+        return false;
+    }
+  </script>
+ </head>
+ <body>
+  <form onsubmit="predict(document.getElementById('num'); return false;">
+    รหัสประชาชน: <input type="text" id="num" onchange="predict(this.value);" onkeyup="predict(this.value);" size="12" maxlength="12" />
+    <input type="button" value="ทำนายสิ" onclick="predict(document.getElementById('num');" />
+    <p><div id="lnum"></div></p>
+  </form>
+ </body>
+</html>
